@@ -89,4 +89,27 @@ color:#fff;
  }
 
 
+ .formemail ,.color-f a{
 
+    color: #7a7a7a;
+    font-weight: bold;
+ }
+ .color-f a:hover{
+     color:antiquewhite
+ }
+.colorbg{
+    background-color: blueviolet;
+    color: #fff;
+}
+
+
+.downfooter{
+    background-color: black;
+    color: #7a7a7a;
+}
+.fonts{
+    font-size: 14px;
+    padding-top: 16px;
+
+
+}

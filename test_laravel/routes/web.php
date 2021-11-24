@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get("products" , 'App\Http\Controllers\ProductController@index' );
-Route::get("products/{id}" , 'App\Http\Controllers\ProductController@show' );
+Route::get("product/{id}" , 'App\Http\Controllers\ProductController@show' );
 
 
 
@@ -34,9 +35,9 @@ Route::get("products/{id}" , 'App\Http\Controllers\ProductController@show' );
 
 
 
-Route::get("/product/create" ,'App\Http\Controllers\ProductController@create');
+// Route::get("/product/create" ,'App\Http\Controllers\ProductController@create');
 
-Route::post("product/store" , 'App\Http\Controllers\ProductController@store' );
+// Route::post("product/store" , 'App\Http\Controllers\ProductController@store' );
 
 Route::middleware("is_admin")->group(function(){
     //for update
@@ -45,17 +46,23 @@ Route::middleware("is_admin")->group(function(){
     Route::post("products/update/{id}" , 'App\Http\Controllers\ProductController@update' );
 //for delete peoduct
 Route::get("products/delete/{id}" , 'App\Http\Controllers\ProductController@delete' );
+
 //create
 
-Route::get("/product/create" ,'App\Http\Controllers\ProductController@create');
+Route::get("/productt/create" ,'App\Http\Controllers\ProductController@create');
 
-Route::post("product/store" , 'App\Http\Controllers\ProductController@store' );
+Route::post("productt/store" , 'App\Http\Controllers\ProductController@store' );
 });
 // login
 Route::get("user/login" , 'App\Http\Controllers\user\AuthController@login' );
 Route::post("user/login" , 'App\Http\Controllers\user\AuthController@check' );
 Route::get("user/register" , 'App\Http\Controllers\user\AuthController@register' );
 Route::post("user/create" , 'App\Http\Controllers\user\AuthController@create' );
+//logout
+Route::get("/user/logout" ,[App\Http\Controllers\user\AuthController::class , 'logout']);
 
+
+// search
+Route::get("/search" ,  'App\Http\Controllers\ProductController@search');
 
 

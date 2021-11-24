@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\user;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-// use Auth;
+
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -53,5 +53,10 @@ function check (Request $request )
     return redirect("/products");
 
 
+}
+function logout()
+{
+    Auth::logout();
+    return redirect("user/login");
 }
 }

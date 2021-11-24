@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ecommerce</title>
+    <link rel="icon" href="{{asset('images/—Pngtree—e commerce logo_5066822.png')}}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}">
@@ -17,13 +18,38 @@
         <nav class="navbar navbar-expand-lg navbar-light  container">
             {{-- <div class="container bg-info"> --}}
             <div class="container-fluid">
-            <a class="navbar-brand" href="#">Free Shipping on All Over $75!</a>
+            <a class="navbar-brand" href="{{url('products')}}">Free Shipping on All Over $75!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                    @if(Auth::user())
+                    <li class="nav-item">
+
+                      <a class="nav-link active" aria-current="page" href="{{ url('products') }}">Products</a>
+                    </li>
+                 @if(Auth::user()->is_admin == 1)
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url("/productt/create") }}">Add product</a>
+                    </li>
+
+                    @endif
+
+                      <li class="nav-item">
+                      <a class="nav-link active"  href="{{ url('/users/logout') }}">Logout</a>
+                    </li>
+      @else
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url('/user/register') }}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="{{ url('/user/login') }}">Login</a>
+                    </li>
+      @endif
                 <li class="nav-item">
+
                     <a class="nav-link active" aria-current="page" href="#">My Account</a>
                 </li>
                 <li class="nav-item">
@@ -51,8 +77,8 @@
         </nav>
     </div>
         <div class="container mt-3 mb-3 ">
-            <form class="d-flex w-25 m-auto ">
-                <input class="form-control me-2  rounded-pill" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex w-25 m-auto " type="get" action ="{{url('/search')}}">
+                <input class="form-control me-2  rounded-pill" name="query" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success  rounded-pill" type="submit">Search</button>
               </form>
         </div>
@@ -133,6 +159,9 @@
 <footer>
     @yield('footer')
 </footer>
+<div class="downfooter">
+    @yield('downfooter')
+</div>
 
 
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
